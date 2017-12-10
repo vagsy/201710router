@@ -9,7 +9,7 @@ export default class User extends Component {
         <div className="col-sm-2">
           <ul className="nav nav-tabs nav-stacked">
             <li><Link to="/user/list">用户列表</Link></li>
-            <li><Link to="/user/add">添加用户</Link></li>
+            <li><Link to={{pathname:"/user/add",state:{msg:'hello'}}}>添加用户</Link></li>
           </ul>
         </div>
         <div className="col-sm-10">
@@ -20,5 +20,3 @@ export default class User extends Component {
     )
   }
 }
-User.UserAdd = UserAdd;
-User.UserList = UserList;

@@ -23,7 +23,7 @@ export default  (
         </div>
       </nav>
       <div className="container">
-        <Route exact path="/" component={Home}/>
+        <Route path="/" component={Home}/>
         <Route path="/user" component={User}/>
         <Route path="/profile" component={Profile}/>
       </div>
