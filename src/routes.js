@@ -4,6 +4,9 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import Home from "./components/Home/index";
+import User from "./components/User/index";
+import Profile from "./components/Profile/index";
 export default  (
   <Router>
     <div>
@@ -20,7 +23,9 @@ export default  (
         </div>
       </nav>
       <div className="container">
-
+        <Route exact path="/" component={Home}/>
+        <Route path="/user" component={User}/>
+        <Route path="/profile" component={Profile}/>
       </div>
     </div>
 
