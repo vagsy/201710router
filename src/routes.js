@@ -2,11 +2,14 @@ import React from 'react';
 import {
   HashRouter as Router,
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom';
 import Home from "./components/Home/index";
 import User from "./components/User/index";
 import Profile from "./components/Profile/index";
+import ProtectedRoute from './components/ProtectedRoute';
+import Login from "./components/Login/index";
 export default  (
   <Router>
     <div>
@@ -23,11 +26,13 @@ export default  (
         </div>
       </nav>
       <div className="container">
-        <Route path="/" component={Home}/>
+        <Route exact path="/" component={Home}/>
         <Route path="/user" component={User}/>
-        <Route path="/profile" component={Profile}/>
+        <Route path="/login" component={Login}/>
+        <ProtectedRoute path="/profile" component={Profile}/>
       </div>
     </div>
-
   </Router>
 )
+//如果希望最多只显示一个组件的话则把若干个路由由Switch包裹起来
+//Switch
