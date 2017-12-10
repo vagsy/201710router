@@ -22,11 +22,9 @@ export default class UserList extends Component {
       <ul className="list-group">
         {
           this.state.users.map(user=>(
-            <Link to={{pathname:`/user/detail/${user.id}`,state:{user}}} key={user.id}>
-              <li  className="list-group-item">
-                {user.username} <button className="btn btn-xs btn-danger pull-right" onClick={()=>this.delete(user.id)}>删除</button>
+              <li key={user.id} className="list-group-item">
+                <Link to={{pathname:`/user/detail/${user.id}`,state:{user}}} >{user.username} </Link><button className="btn btn-xs btn-danger pull-right" onClick={()=>this.delete(user.id)}>删除</button>
               </li>
-            </Link>
           ))
         }
       </ul>

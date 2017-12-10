@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 export default class UserDetail extends Component {
   render() {
-    console.log(this.props);
     //如果转跳转的时候带来了就有，如果跳转的没带过来就没有
     let user;
     if (this.props.location.state && this.props.location.state.user) {
