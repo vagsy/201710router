@@ -13,8 +13,10 @@ export default class UserAdd extends Component {
     let users = localStorage.getItem('users')?JSON.parse(localStorage.getItem('users')):[];
     //把取得老数组加上新的用户对象构建成一个新的数组，并转成字符串重新写入localStorage
     localStorage.setItem('users',JSON.stringify([...users,{id:Date.now(),username,password}]));
-    //跳转到用户列表页
-    this.props.history.push('/user/list');
+    this.setState({isEditing:false},()=>{
+      //跳转到用户列表页
+      this.props.history.push('/user/list');
+    });
   }
   handleChange = ()=>{
     console.log(!!(this.username.value || this.password.value));
