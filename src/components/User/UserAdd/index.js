@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import {Link,Route} from 'react-router-dom';
+import {Link,Route,Prompt} from 'react-router-dom';
 export default class UserAdd extends Component {
+  constructor(){
+    super();
+    this.state = {isEditing:false};
+  }
   handleSubmit = (event)=>{
     event.preventDefault(); //阻止默认事件
     let username = this.username.value;//取得用户名这个真实DOM的value值
@@ -12,21 +16,36 @@ export default class UserAdd extends Component {
     //跳转到用户列表页
     this.props.history.push('/user/list');
   }
+  handleChange = ()=>{
+    console.log(!!(this.username.value || this.password.value));
+    let isEditing = !!(this.username.value||this.password.value);
+    this.setState({isEditing});
+  }
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="username">用户名</label>
-          <input ref={input=>this.username = input} type="text" className="form-control"/>
-        </div>
-        <div className="form-group">
-          <label htmlFor="password">密码</label>
-          <input  ref={input=>this.password = input} type="text" className="form-control"/>
-        </div>
-        <div className="form-group">
-          <input type="submit" className="btn btn-primary"/>
-        </div>
-      </form>
+      <div>
+        <Prompt
+          when={this.state.isEditing}
+          message={location=>`你真要切换到${location.pathname}地址吗?`}
+        />
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="username">用户名</label>
+            <input
+              onChange={this.handleChange}
+              ref={input=>this.username = input} type="text" className="form-control"/>
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">密码</label>
+            <input
+              onChange={this.handleChange}
+              ref={input=>this.password = input} type="text" className="form-control"/>
+          </div>
+          <div className="form-group">
+            <input type="submit" className="btn btn-primary"/>
+          </div>
+        </form>
+      </div>
     )
   }
 }
