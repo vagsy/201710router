@@ -12,6 +12,9 @@ import Profile from "./components/Profile/index";
 import ProtectedRoute from './components/ProtectedRoute';
 import MenuLink from './components/MenuLink';
 import Login from "./components/Login/index";
+function NoMatch() {
+  return <h1>未找到页面</h1>
+}
 export default  (
   <Router>
     <div>
@@ -28,10 +31,13 @@ export default  (
         </div>
       </nav>
       <div className="container">
-        <Route exact path="/" component={Home}/>
-        <Route path="/user" component={User}/>
-        <Route path="/login" component={Login}/>
-        <ProtectedRoute path="/profile" component={Profile}/>
+        <Switch>
+          <Route exact path="/" component={Home}/>
+          <Route path="/user" component={User}/>
+          <Route path="/login" component={Login}/>
+          <ProtectedRoute path="/profile" component={Profile}/>
+          <Route component={NoMatch}/>
+        </Switch>
       </div>
     </div>
   </Router>
